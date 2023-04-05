@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
+model Nft {
+  id        Int        @id @default(autoincrement())
+  name      String     @db.VarChar(255)
+  image     String     @db.VarChar(255)
+  mint      String     @unique @db.VarChar(255)
+  rank      Int
+  traits    NftTrait[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model NftTrait {
+  id        Int    @id @default(autoincrement())
+  attribute String
+  value     String
+
+  mint String?
+  nft  Nft?    @relation(fields: [mint], references: [mint])
+}
+
+model WlToken {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  image     String   @db.VarChar(255)
+  mint      String   @unique @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name              String @unique @db.VarChar(255)
+  email             String?
+  image             String?
+  discordId         String?
+  nonce             String?
+  wallet            String?
+}
+
+model StakeTransaction {
+  id        Int      @id @default(autoincrement())
+  txSignature      String @unique
+  discordId         String
+  wallet            String
+  wlMint            String
+  entreMints        String @db.VarChar(1024)
+  stakeAt DateTime
+  claimAt DateTime?
+}

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: #161b19;
+  font-family: "Montserrat", sans-serif;
+}
+
+.wallet-adapter-button-trigger.wallet-adapter-button:not([disabled]):hover,
+.wallet-adapter-dropdown .wallet-adapter-button:not([disabled]):hover {
+  background-color: #3a1f79 !important;
+}
+
+.wallet-adapter-dropdown .wallet-adapter-button-trigger {
+  background-color: #512da8 !important;
+}
