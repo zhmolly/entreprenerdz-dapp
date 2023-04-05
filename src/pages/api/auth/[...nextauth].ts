@@ -1,5 +1,4 @@
 import prisma from "@/lib/prisma";
-import { User } from "@prisma/client";
 import NextAuth, { Session } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 

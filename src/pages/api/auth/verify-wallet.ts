@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-
-import { getSession } from "next-auth/react";
+import prisma from "@/lib/prisma";
 import { Connection } from "@solana/web3.js";
 import { RPC_URL } from "@/constants";
 import { bs58 } from "@project-serum/anchor/dist/cjs/utils/bytes";
